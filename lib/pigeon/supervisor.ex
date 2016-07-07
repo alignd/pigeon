@@ -30,6 +30,7 @@ defmodule Pigeon.Supervisor do
   defp config_mode, do: Application.get_env(:pigeon, :apns_mode)
   defp config_cert, do: Application.get_env(:pigeon, :apns_cert)
   defp config_key, do: Application.get_env(:pigeon, :apns_key)
+  defp config_topic, do: Application.get_env(:pigeon, :apns_topic)
 
   def ssl_config do
     %{
@@ -37,6 +38,7 @@ defmodule Pigeon.Supervisor do
       cert: cert(config_cert),
       certfile: file_path(config_cert),
       key: key(config_key),
+      default_topic: config_topic,
       keyfile: file_path(config_key)
     }
   end
